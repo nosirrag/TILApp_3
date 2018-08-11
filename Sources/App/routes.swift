@@ -7,6 +7,7 @@ public func routes(_ router: Router) throws {
         return "Waazzzuuppp, Homes??!!"
     }
     
+    // POST
     router.post("api", "acronyms") { req -> Future<Acronym> in
         return try req.content.decode(Acronym.self).flatMap(to: Acronym.self) { acronym in
             
@@ -14,3 +15,8 @@ public func routes(_ router: Router) throws {
         }
     }
 }
+
+
+
+// starting a postgresql database
+

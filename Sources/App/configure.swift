@@ -1,9 +1,22 @@
-
-
-// 1 import PostgreSQL
 //import FluentSQLite
 import FluentPostgreSQL
 import Vapor
+
+/// Places to Check for local database setup
+//https://docs.vapor.codes/3.0/fluent/getting-started/
+//https://github.com/vapor-community/postgresql
+
+//https://forums.raywenderlich.com/t/chapter-6-postgresql/41740
+
+//https://medium.com/@johannkerr/persisting-data-with-vapor-3-and-postgresql-246386ac1448
+//https://medium.com/@martinlasek/tutorial-how-to-use-postgresql-efb62a434cc5
+//https://github.com/vapor-community/postgresql-provider
+
+//https://theswiftwebdeveloper.com/diving-into-vapor-part-1-up-and-running-with-vapor-3-edab3c79aab9
+//https://theswiftwebdeveloper.com/diving-into-vapor-part-2-persisting-data-in-vapor-3-c927638301e8
+//https://theswiftwebdeveloper.com/diving-into-vapor-part-3-introduction-to-routing-and-fluent-in-vapor-3-221d209f1fec
+//https://github.com/calebkleveter/chatter/tree/basic-routing-and-fluent
+
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
@@ -27,18 +40,24 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     // 1
     var databases = DatabasesConfig()
-    // 2
-    let hostname = Environment.get("DATABASE_HOSTNAME") ?? "localhost"
-    let username = Environment.get("DATABASE_USER") ?? "vapor"
-    let databaseName = Environment.get("DATABASE_DB") ?? "vapor"
-    let password = Environment.get("DATABASE_PASSWORD") ?? "password"
-    // 3
-    let databaseConfig = PostgreSQLDatabaseConfig(
-        hostname: hostname,
-        username: username,
-        database: databaseName,
-        password: password
-    )
+    
+    
+//    // 2
+//    let hostname = Environment.get("DATABASE_HOSTNAME") ?? "localhost"
+//    let username = Environment.get("DATABASE_USER") ?? "garrisonjazz"
+//    let databaseName = Environment.get("DATABASE_DB") ?? "shapeshifterlab"
+//    let password = Environment.get("DATABASE_PASSWORD") ?? "password"
+//    // 3
+//    let databaseConfig = PostgreSQLDatabaseConfig(
+//        hostname: hostname,
+//        port: 5432,
+//        username: username,
+//        database: databaseName,
+//        password: password
+//    )
+    
+    let databaseConfig = PostgreSQLDatabaseConfig(hostname: "localhost", username: "garrisonjazz", database: "shapeshifterlab")
+    
     // 4
     let database = PostgreSQLDatabase(config: databaseConfig)
     // 5
