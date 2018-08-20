@@ -42,21 +42,21 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     var databases = DatabasesConfig()
     
     
-//    // 2
-//    let hostname = Environment.get("DATABASE_HOSTNAME") ?? "localhost"
-//    let username = Environment.get("DATABASE_USER") ?? "garrisonjazz"
-//    let databaseName = Environment.get("DATABASE_DB") ?? "shapeshifterlab"
-//    let password = Environment.get("DATABASE_PASSWORD") ?? "password"
-//    // 3
-//    let databaseConfig = PostgreSQLDatabaseConfig(
-//        hostname: hostname,
-//        port: 5432,
-//        username: username,
-//        database: databaseName,
-//        password: password
-//    )
+    // 2
+    let hostname = Environment.get("DATABASE_HOSTNAME") ?? "localhost"
+    let username = Environment.get("DATABASE_USER") ?? "garrisonjazz"
+    let databaseName = Environment.get("DATABASE_DB") ?? "shapeshifterlab"
+    let password = Environment.get("DATABASE_PASSWORD") ?? "password"
+    // 3
+    let databaseConfig = PostgreSQLDatabaseConfig(
+        hostname: hostname,
+        port: 5432,
+        username: username,
+        database: databaseName
+        //password: password
+    )
     
-    let databaseConfig = PostgreSQLDatabaseConfig(hostname: "localhost", username: "garrisonjazz", database: "shapeshifterlab")
+//    let databaseConfig = PostgreSQLDatabaseConfig(hostname: "localhost", username: "garrisonjazz", database: "shapeshifterlab")
     
     // 4
     let database = PostgreSQLDatabase(config: databaseConfig)
