@@ -17,6 +17,8 @@ import Vapor
 //https://theswiftwebdeveloper.com/diving-into-vapor-part-3-introduction-to-routing-and-fluent-in-vapor-3-221d209f1fec
 //https://github.com/calebkleveter/chatter/tree/basic-routing-and-fluent
 
+///https://theswiftdev.com/2018/04/09/vapor-3-tutorial-for-beginners/
+
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
