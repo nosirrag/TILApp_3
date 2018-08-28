@@ -19,7 +19,6 @@ import Vapor
 
 ///https://theswiftdev.com/2018/04/09/vapor-3-tutorial-for-beginners/
 
-
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
     /// Register providers first
@@ -36,14 +35,8 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     /// middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
     middlewares.use(ErrorMiddleware.self) // Catches errors and converts to HTTP response
     services.register(middlewares)
-
-    // Configure a SQLite database
-    //let sqlite = try SQLiteDatabase(storage: .memory)
-    
     // 1
     var databases = DatabasesConfig()
-    
-    
     // 2
     let hostname = Environment.get("DATABASE_HOSTNAME") ?? "localhost"
     let username = Environment.get("DATABASE_USER") ?? "garrisonjazz"
@@ -57,21 +50,21 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
         database: databaseName
         //password: password
     )
-    
 //    let databaseConfig = PostgreSQLDatabaseConfig(hostname: "localhost", username: "garrisonjazz", database: "shapeshifterlab")
-    
     // 4
     let database = PostgreSQLDatabase(config: databaseConfig)
     // 5
     databases.add(database: database, as: .psql)
     // 6
     services.register(databases)
-    
 
     /// Configure migrations
     var migrations = MigrationConfig()
-    migrations.add(model: Acronym.self, database: .psql)
     migrations.add(model: User.self, database: .psql)
+    migrations.add(model: Acronym.self, database: .psql)
     services.register(migrations)
 
+    var commandConfig = CommandConfig.default()
+    commandConfig.use(RevertCommand.self, as: "revert")
+    services.register(commandConfig)
 }
