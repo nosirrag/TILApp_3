@@ -1,6 +1,7 @@
 //import FluentSQLite
 import FluentPostgreSQL
 import Vapor
+import Leaf
 
 /// Places to Check for local database setup
 //https://docs.vapor.codes/3.0/fluent/getting-started/
@@ -24,6 +25,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     /// Register providers first
     // 2
     try services.register(FluentPostgreSQLProvider())
+    try services.register(LeafProvider())
 
     /// Register routes to the router
     let router = EngineRouter.default()
@@ -67,4 +69,6 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     var commandConfig = CommandConfig.default()
     commandConfig.use(RevertCommand.self, as: "revert")
     services.register(commandConfig)
+    
+    config.prefer(LeafRenderer.self, for: ViewRenderer.self)
 }
